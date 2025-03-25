@@ -11,17 +11,21 @@ export class TareaService {
     return this.tareas;
   }
   agregarTarea(nombre: string) {
+    const nuevoId = this.tareas.length > 0 ? Math.max(...this.tareas.map(t => t.id)) + 1 : 1;
     const nuevaTarea: Tarea = {
-      id: this.tareas.length + 1,
+      id: nuevoId,
       nombre: nombre,
       completada: false
     };
     this.tareas.push(nuevaTarea);
+  ;
+    this.tareas.push(nuevaTarea);
   }
 
   eliminarTarea(id: number) {
-    this.tareas = this.tareas.filter(t => t.id !== id);
+    this.tareas = this.tareas.filter(t => t.id !== id); // 🔹 Filtrar la tarea eliminada
   }
+  
 
   cambiarEstado(id: number) {
     this.tareas = this.tareas.map(t => t.id === id ? { ...t, completada: !t.completada } : t);

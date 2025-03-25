@@ -11,12 +11,12 @@ import { FormsModule } from '@angular/forms';
 export class AgregarTareaComponent {
   nombreTarea: string = '';
 
-  constructor(private tareaService: TareaService) { }
+  constructor(private tareaService: TareaService) {}
 
   agregarTarea() {
-    if (this.nombreTarea.trim()) {
-      this.tareaService.agregarTarea(this.nombreTarea);
-      this.nombreTarea = '';
-    }
+    if (!this.nombreTarea.trim()) return; // Evita agregar tareas vacías
+
+    this.tareaService.agregarTarea(this.nombreTarea); // Agrega la tarea
+    this.nombreTarea = ''; // Limpia el input después de agregar
   }
 }

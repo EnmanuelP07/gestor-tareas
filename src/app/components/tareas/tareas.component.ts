@@ -9,22 +9,28 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './tareas.component.html',
   styleUrl: './tareas.component.css',
   imports: [CommonModule, FormsModule],
+  standalone:true,
 })
 export class TareasComponent implements OnInit {
-  nombreTarea: string = ''; 
   tareas: Tarea[] = [];
 
-  constructor(private tareaService: TareaService) { }
+  constructor(private tareaService: TareaService) {}
 
   ngOnInit() {
+    this.cargarTareas();
+  }
+
+  cargarTareas() {
     this.tareas = this.tareaService.obtenerTareas();
   }
 
   eliminarTarea(id: number) {
     this.tareaService.eliminarTarea(id);
+    this.cargarTareas(); // Actualiza la lista después de eliminar
   }
 
   cambiarEstado(id: number) {
     this.tareaService.cambiarEstado(id);
+    this.cargarTareas(); // Actualiza la lista después de cambiar estado
   }
 }
