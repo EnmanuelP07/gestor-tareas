@@ -1,0 +1,14 @@
+<div class="container mt-3">
+    <h2>Lista de Tareas</h2>
+    <ul class="list-group">
+      <li *ngFor="let tarea of tareas" class="list-group-item d-flex justify-content-between">
+        <span [class.text-decoration-line-through]="tarea.completada">{{ tarea.nombre }}</span>
+        <div>
+          <button class="btn btn-success btn-sm me-2" (click)="cambiarEstado(tarea.id)">
+            {{ tarea.completada ? 'Desmarcar' : 'Completar' }}
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarTarea(tarea.id)">Eliminar</button>
+        </div>
+      </li>
+    </ul>
+  </div>
